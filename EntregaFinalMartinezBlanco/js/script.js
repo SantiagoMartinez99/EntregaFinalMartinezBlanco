@@ -45,7 +45,7 @@ fetch("https://fakestoreapi.com/products?limit=5")
     });
   });
 
-let shoppingCart = [];
+let shoppingCart = JSON.parse(localStorage.getItem("shoppingCart")) || [];
 
 const btnCart = document.querySelector(".container-cart-icon");
 const containerCartProducts = document.querySelector(
@@ -56,28 +56,11 @@ function addToCart(index) {
   const itemToAdd = json[index]; // Obtén el elemento correspondiente al índice del JSON
   const updatedItem = { ...itemToAdd, quantity: 1 }; // Agrega la propiedad 'quantity' al elemento con valor inicial de 1
   shoppingCart.push(updatedItem);
-  console.log(shoppingCart);
+  localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
   showShoppingCart();
 }
 
 const itemList = document.querySelector(".container-items");
-
-// json.forEach((item, index) => {
-//   console.log("paso");
-//   let card = document.createElement("div");
-//   card.classList.add("card");
-//   let html = `
-//     <img src="${item.image}" class="card-img-top" alt="...">
-//     <div class="card-body">
-//       <h5 class="card-title">${item.title}</h5>
-//       <p class="card-text">Price: ${item.price}</p>
-//       <p class="card-text">Quantity: ${item.quantity}</p>
-//       <a class="btn btn-primary" onClick="addToCart(${index})">Add to Cart</a>
-//     </div>
-//   `;
-//   card.innerHTML = html;
-//   itemList.appendChild(card);
-// });
 
 function removeItem(id) {
   const index = shoppingCart.findIndex((item) => item.id === id);
@@ -116,6 +99,7 @@ function showShoppingCart(json) {
     `;
     itemToBuy.innerHTML = html;
     cartContainer.appendChild(itemToBuy);
+    JSON.parse(localStorage.getItem("shoppingCart"));
   });
   for (let i = 0; i < shoppingCart.length; i++) {
     totalPrice += shoppingCart[i].price;
@@ -130,6 +114,7 @@ btnCart.addEventListener("click", () => {
 });
 
 function buyItems() {
+  shoppingCart = [];
   Swal.fire("Congratulations!", "Succesfull Purchase!", "success");
   const cartContainer = document.getElementById("cart-total hidden");
   cartContainer.innerHTML = "Successfull Purchase";

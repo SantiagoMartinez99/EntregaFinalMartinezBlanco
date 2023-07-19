@@ -135,6 +135,7 @@ header {
   margin: 10px;
   align-items: center;
   margin: 10%;
+  margin-bottom: 30%;
 }
 
 .cart-card-title {
@@ -143,6 +144,10 @@ header {
 
 .cart-card-body {
   display: flex;
+}
+
+.cart-card-body h5 {
+  font-size: small;
 }
 
 .cart-card-text {
@@ -197,7 +202,6 @@ footer {
   width: 50px;
   border-radius: 50px;
   border: 1px solid #f2f2f2;
-  background-image: url(//material/icons8-facebook.svg);
   background-position: center;
   background-size: 40%;
   background-repeat: no-repeat;
@@ -206,18 +210,6 @@ footer {
 .social-icon:hover {
   background-color: grey;
   filter: invert(1);
-}
-
-.social-icon:nth-of-type(2) {
-  background-image: url(//material/icons8-github.svg);
-}
-
-.social-icon:nth-of-type(3) {
-  background-image: url(//material/icons8-instagram.svg);
-}
-
-.social-icon:nth-of-type(4) {
-  background-image: url(//material/icons8-twitter.svg);
 }
 
 .footer-menu-container {
